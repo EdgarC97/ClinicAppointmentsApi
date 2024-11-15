@@ -29,5 +29,11 @@ namespace ClinicAppointmentsApi.Interfaces
         Task<IEnumerable<AppointmentHistoryDTO>> GetAppointmentHistoryByPatientAsync(int patientId);
         // Method to cancel an appointment
         Task<string> CancelAppointmentAsync(int appointmentId);
+
+        // Method to filter appointments based on date, specialty, and medical problem
+        Task<IEnumerable<Appointment>> GetFilteredAppointmentsAsync(AppointmentFilterDTO filter);
+
+        // Updates the doctor's availability once an appointment is scheduled
+        Task UpdateDoctorAvailabilityAsync(int doctorId, DateTime appointmentDate);
     }
 }

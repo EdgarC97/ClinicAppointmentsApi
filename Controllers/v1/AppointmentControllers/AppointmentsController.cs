@@ -128,5 +128,25 @@ namespace ClinicAppointmentsApi.Controllers.v1.AppointmentControllers
 
             return Ok(result);  // Return success message if the cancellation was successful
         }
+
+        /// <summary>
+        /// Filters appointments based on the provided criteria (date, specialty, or medical problem).
+        /// </summary>
+        /// <param name="filter">The DTO containing the filter criteria.</param>
+        /// <returns>A list of appointments that match the provided filter criteria.</returns>
+        [HttpGet("filter")]
+        public async Task<IActionResult> GetFilteredAppointments([FromQuery] AppointmentFilterDTO filter)
+        {
+            // Call the service method to get the filtered list of appointments
+            var appointments = await _appointmentService.GetFilteredAppointmentsAsync(filter);
+
+            if (appointments == null || !appointments.Any())
+            {
+                return NotFound("No appointments found matching the filter criteria.");
+            }
+
+            // Return the filtered appointments if found
+            return Ok(appointments);
+        }
     }
 }

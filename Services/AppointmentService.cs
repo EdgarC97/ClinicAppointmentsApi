@@ -46,6 +46,23 @@ namespace ClinicAppointmentsApi.Services
             return !(await CheckAppointmentConflictAsync(doctorId, appointmentDate));
         }
 
+        // Updates the doctor's availability after an appointment is scheduled
+        public async Task UpdateDoctorAvailabilityAsync(int doctorId, DateTime appointmentDate)
+        {
+            var availability = await _context.Availabilities
+                .FirstOrDefaultAsync(a => a.DoctorId == doctorId && a.AvailableDate.Date == appointmentDate.Date);
+
+            if (availability != null)
+            {
+                // Mark the time slot as no longer available (assuming the whole time slot is taken by the appointment)
+                availability.StartTime = DateTime.MaxValue.TimeOfDay; // or set it to a value indicating it's no longer available
+                availability.EndTime = DateTime.MinValue.TimeOfDay;
+                availability.UpdatedAt = DateTime.UtcNow;
+                _context.Availabilities.Update(availability);
+                await _context.SaveChangesAsync();
+            }
+        }
+
         // Schedules a new appointment after checking conflicts and duplicates
         public async Task<string> ScheduleAppointmentAsync(Appointment appointment)
         {
@@ -70,8 +87,12 @@ namespace ClinicAppointmentsApi.Services
             appointment.CreatedAt = DateTime.UtcNow;
             appointment.UpdatedAt = DateTime.UtcNow;
 
+            // Save the appointment to the database
             _context.Appointments.Add(appointment);
             await _context.SaveChangesAsync();
+
+            // Step 4: Update the doctor's availability after the appointment is scheduled
+            await UpdateDoctorAvailabilityAsync(appointment.DoctorId, appointment.AppointmentDate);
 
             return "Appointment scheduled successfully.";
         }
@@ -102,7 +123,7 @@ namespace ClinicAppointmentsApi.Services
             return appointments; // Return the list of appointment history
         }
 
-         // Method to cancel an appointment
+        // Method to cancel an appointment
         public async Task<string> CancelAppointmentAsync(int appointmentId)
         {
             // Retrieve the appointment by ID
@@ -122,5 +143,35 @@ namespace ClinicAppointmentsApi.Services
 
             return "Appointment successfully canceled.";  // Return success message
         }
+
+        // Retrieves appointments filtered by date, specialty, and medical problem
+        public async Task<IEnumerable<Appointment>> GetFilteredAppointmentsAsync(AppointmentFilterDTO filter)
+        {
+            var query = _context.Appointments
+                .Include(a => a.Doctor)  // Include the Doctor entity to access its properties like Specialty
+                .AsQueryable();
+
+            // Apply filter by appointment date (if provided)
+            if (filter.AppointmentDate.HasValue)
+            {
+                query = query.Where(a => a.AppointmentDate.Date == filter.AppointmentDate.Value.Date);
+            }
+
+            // Apply filter by doctor's specialty (if provided)
+            if (!string.IsNullOrEmpty(filter.Specialty))
+            {
+                query = query.Where(a => a.Doctor.Specialty.Contains(filter.Specialty, StringComparison.OrdinalIgnoreCase));
+            }
+
+            // Apply filter by medical problem (if provided)
+            if (!string.IsNullOrEmpty(filter.MedicalProblem))
+            {
+                query = query.Where(a => a.MedicalProblem.Contains(filter.MedicalProblem, StringComparison.OrdinalIgnoreCase));
+            }
+
+            // Execute the query and return the filtered results
+            return await query.ToListAsync();
+        }
+
     }
 }
