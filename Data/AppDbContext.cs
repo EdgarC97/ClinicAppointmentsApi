@@ -28,7 +28,7 @@ namespace ClinicAppointmentsApi.Data
         // Method called when the model for a derived context is being created.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Seed the database with initial data for RoomTypes, Rooms, Guests, Employees, and Bookings.
+            // Seed the database with initial data for Users, Doctos, Patients, Appointments, and Avaliabilitys.
             UserSeeder.Seed(modelBuilder);
             DoctorSeeder.Seed(modelBuilder);
             PatientSeeder.Seed(modelBuilder);

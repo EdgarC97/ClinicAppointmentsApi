@@ -1,6 +1,9 @@
 using System.Reflection;
 using System.Text;
+using ClinicAppointmentsApi.Config;
 using ClinicAppointmentsApi.Data;
+using ClinicAppointmentsApi.Interfaces;
+using ClinicAppointmentsApi.Services;
 using DotNetEnv;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -28,33 +31,31 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(DefaultConnection, new MySqlServerVersion(new Version(8, 0))));
 
 // Configuring JSON Web Token (JWT) authentication
-// builder.Services.AddSingleton<Utilities>(); // Register Utilities as a singleton
-// builder.Services.AddAuthentication(config =>
-// {
-//     config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; // Default scheme for authentication
-//     config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme; // Default scheme for challenges
-//     config.DefaultScheme = JwtBearerDefaults.AuthenticationScheme; // Default scheme
-// }).AddJwtBearer(config =>
-// {
-//     config.RequireHttpsMetadata = false; // Allow HTTP for testing purposes
-//     config.SaveToken = true; // Save the token
-//     config.TokenValidationParameters = new TokenValidationParameters
-//     {
-//         ValidateIssuer = true, // Validate the token's issuer
-//         ValidIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER"), // Set valid issuer from environment
-//         ValidateAudience = false, // Audience validation is disabled
-//         ValidAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE"), // Set valid audience from environment
-//         ValidateLifetime = true, // Validate token lifetime
-//         ClockSkew = TimeSpan.Zero, // No clock skew
-//         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_KEY")!)) // Set signing key from environment
-//     };
-// });
+builder.Services.AddSingleton<Utilities>(); // Register Utilities as a singleton
+builder.Services.AddAuthentication(config =>
+{
+    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; // Default scheme for authentication
+    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme; // Default scheme for challenges
+    config.DefaultScheme = JwtBearerDefaults.AuthenticationScheme; // Default scheme
+}).AddJwtBearer(config =>
+{
+    config.RequireHttpsMetadata = false; // Allow HTTP for testing purposes
+    config.SaveToken = true; // Save the token
+    config.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true, // Validate the token's issuer
+        ValidIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER"), // Set valid issuer from environment
+        ValidateAudience = false, // Audience validation is disabled
+        ValidAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE"), // Set valid audience from environment
+        ValidateLifetime = true, // Validate token lifetime
+        ClockSkew = TimeSpan.Zero, // No clock skew
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_KEY")!)) // Set signing key from environment
+    };
+});
 
 // Register application services
-// builder.Services.AddScoped<IRoomService, RoomService>(); // Room service registration
-// builder.Services.AddScoped<IAuthService, AuthService>(); // Auth service registration
-// builder.Services.AddScoped<IGuestService, GuestService>(); // Guest service registration
-// builder.Services.AddScoped<IBookingService, BookingService>(); // Booking service registration
+builder.Services.AddScoped<IAuthService, AuthService>(); // Room service registration
+
 
 // Add services to the container
 builder.Services.AddControllers(); // Add controllers for API endpoints
