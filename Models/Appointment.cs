@@ -43,5 +43,13 @@ namespace ClinicAppointmentsApi.Models
         // Timestamps
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+
+        // The medical problem or reason for the appointment
+        [Required]
+        [StringLength(200)]
+        public string MedicalProblem { get; set; }
+
+        // Navigation property to access the associated Doctor object
+        public Doctor Doctor { get; set; }  // This is the navigation property
     }
 }

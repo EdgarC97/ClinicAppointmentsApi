@@ -4,6 +4,7 @@ using ClinicAppointmentsApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClinicAppointmentsApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241115160831_AddMedicalProblemToAppointment")]
+    partial class AddMedicalProblemToAppointment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,8 +58,6 @@ namespace ClinicAppointmentsApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DoctorId");
-
                     b.ToTable("Appointments");
 
                     b.HasData(
@@ -64,56 +65,56 @@ namespace ClinicAppointmentsApi.Migrations
                         {
                             Id = 1,
                             AppointmentDate = new DateTime(2024, 5, 10, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3058),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6511),
                             DoctorId = 1,
                             MedicalProblem = "Flu",
                             PatientId = 1,
                             Status = 0,
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3058)
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6512)
                         },
                         new
                         {
                             Id = 2,
                             AppointmentDate = new DateTime(2024, 5, 12, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3060),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6513),
                             DoctorId = 2,
                             MedicalProblem = "Dental Pain",
                             PatientId = 2,
                             Status = 0,
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3060)
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6514)
                         },
                         new
                         {
                             Id = 3,
                             AppointmentDate = new DateTime(2024, 5, 13, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3061),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6515),
                             DoctorId = 3,
                             MedicalProblem = "Checkup",
                             PatientId = 3,
                             Status = 1,
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3062)
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6515)
                         },
                         new
                         {
                             Id = 4,
                             AppointmentDate = new DateTime(2024, 5, 15, 11, 15, 0, 0, DateTimeKind.Unspecified),
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3063),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6516),
                             DoctorId = 4,
                             MedicalProblem = "Back Pain",
                             PatientId = 4,
                             Status = 2,
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3063)
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6516)
                         },
                         new
                         {
                             Id = 5,
                             AppointmentDate = new DateTime(2024, 5, 18, 16, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3064),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6518),
                             DoctorId = 5,
                             MedicalProblem = "Migraine",
                             PatientId = 5,
                             Status = 3,
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3065)
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6518)
                         });
                 });
 
@@ -152,51 +153,51 @@ namespace ClinicAppointmentsApi.Migrations
                         {
                             Id = 1,
                             AvailableDate = new DateTime(2024, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3126),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6580),
                             DoctorId = 1,
                             EndTime = new TimeSpan(0, 12, 0, 0, 0),
                             StartTime = new TimeSpan(0, 9, 0, 0, 0),
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3126)
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6581)
                         },
                         new
                         {
                             Id = 2,
                             AvailableDate = new DateTime(2024, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3131),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6585),
                             DoctorId = 2,
                             EndTime = new TimeSpan(0, 18, 0, 0, 0),
                             StartTime = new TimeSpan(0, 14, 0, 0, 0),
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3131)
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6586)
                         },
                         new
                         {
                             Id = 3,
                             AvailableDate = new DateTime(2024, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3135),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6590),
                             DoctorId = 3,
                             EndTime = new TimeSpan(0, 12, 0, 0, 0),
                             StartTime = new TimeSpan(0, 8, 0, 0, 0),
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3136)
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6590)
                         },
                         new
                         {
                             Id = 4,
                             AvailableDate = new DateTime(2024, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3139),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6594),
                             DoctorId = 4,
                             EndTime = new TimeSpan(0, 12, 0, 0, 0),
                             StartTime = new TimeSpan(0, 9, 0, 0, 0),
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3140)
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6594)
                         },
                         new
                         {
                             Id = 5,
                             AvailableDate = new DateTime(2024, 5, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3143),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6598),
                             DoctorId = 5,
                             EndTime = new TimeSpan(0, 17, 0, 0, 0),
                             StartTime = new TimeSpan(0, 13, 0, 0, 0),
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3144)
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6598)
                         });
                 });
 
@@ -237,46 +238,46 @@ namespace ClinicAppointmentsApi.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 11, 15, 11, 51, 23, 520, DateTimeKind.Local).AddTicks(2971),
+                            CreatedAt = new DateTime(2024, 11, 15, 11, 8, 31, 45, DateTimeKind.Local).AddTicks(6426),
                             Name = "Dr. Smith",
                             Specialty = "Cardiology",
-                            UpdatedAt = new DateTime(2024, 11, 15, 11, 51, 23, 520, DateTimeKind.Local).AddTicks(2998),
+                            UpdatedAt = new DateTime(2024, 11, 15, 11, 8, 31, 45, DateTimeKind.Local).AddTicks(6458),
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 11, 15, 11, 51, 23, 520, DateTimeKind.Local).AddTicks(3000),
+                            CreatedAt = new DateTime(2024, 11, 15, 11, 8, 31, 45, DateTimeKind.Local).AddTicks(6459),
                             Name = "Dr. Johnson",
                             Specialty = "Orthopedics",
-                            UpdatedAt = new DateTime(2024, 11, 15, 11, 51, 23, 520, DateTimeKind.Local).AddTicks(3001),
+                            UpdatedAt = new DateTime(2024, 11, 15, 11, 8, 31, 45, DateTimeKind.Local).AddTicks(6460),
                             UserId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 11, 15, 11, 51, 23, 520, DateTimeKind.Local).AddTicks(3003),
+                            CreatedAt = new DateTime(2024, 11, 15, 11, 8, 31, 45, DateTimeKind.Local).AddTicks(6462),
                             Name = "Dr. Brown",
                             Specialty = "Neurology",
-                            UpdatedAt = new DateTime(2024, 11, 15, 11, 51, 23, 520, DateTimeKind.Local).AddTicks(3003),
+                            UpdatedAt = new DateTime(2024, 11, 15, 11, 8, 31, 45, DateTimeKind.Local).AddTicks(6462),
                             UserId = 3
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2024, 11, 15, 11, 51, 23, 520, DateTimeKind.Local).AddTicks(3005),
+                            CreatedAt = new DateTime(2024, 11, 15, 11, 8, 31, 45, DateTimeKind.Local).AddTicks(6464),
                             Name = "Dr. Taylor",
                             Specialty = "Dermatology",
-                            UpdatedAt = new DateTime(2024, 11, 15, 11, 51, 23, 520, DateTimeKind.Local).AddTicks(3006),
+                            UpdatedAt = new DateTime(2024, 11, 15, 11, 8, 31, 45, DateTimeKind.Local).AddTicks(6464),
                             UserId = 4
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2024, 11, 15, 11, 51, 23, 520, DateTimeKind.Local).AddTicks(3007),
+                            CreatedAt = new DateTime(2024, 11, 15, 11, 8, 31, 45, DateTimeKind.Local).AddTicks(6465),
                             Name = "Dr. Lee",
                             Specialty = "Pediatrics",
-                            UpdatedAt = new DateTime(2024, 11, 15, 11, 51, 23, 520, DateTimeKind.Local).AddTicks(3007),
+                            UpdatedAt = new DateTime(2024, 11, 15, 11, 8, 31, 45, DateTimeKind.Local).AddTicks(6466),
                             UserId = 5
                         });
                 });
@@ -317,37 +318,37 @@ namespace ClinicAppointmentsApi.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3031),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6487),
                             Email = "john_doe@example.com",
                             Name = "John Doe",
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3032),
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6488),
                             UserId = 2
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3033),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6489),
                             Email = "jane_doe@example.com",
                             Name = "Jane Doe",
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3033),
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6489),
                             UserId = 3
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3034),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6490),
                             Email = "mark_smith@example.com",
                             Name = "Mark Smith",
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3035),
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6490),
                             UserId = 4
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3036),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6491),
                             Email = "emily_brown@example.com",
                             Name = "Emily Brown",
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(3036),
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6492),
                             UserId = 5
                         });
                 });
@@ -392,64 +393,53 @@ namespace ClinicAppointmentsApi.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(2870),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6318),
                             Email = "admin@example.com",
                             Password = "admin123",
                             Role = 0,
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(2871),
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6318),
                             Username = "admin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(2872),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6319),
                             Email = "john_doe@example.com",
                             Password = "password123",
                             Role = 2,
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(2873),
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6320),
                             Username = "john_doe"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(2874),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6321),
                             Email = "jane_doe@example.com",
                             Password = "password123",
                             Role = 2,
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(2874),
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6321),
                             Username = "jane_doe"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(2875),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6322),
                             Email = "dr_smith@example.com",
                             Password = "doctor123",
                             Role = 1,
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(2876),
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6323),
                             Username = "dr_smith"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(2877),
+                            CreatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6324),
                             Email = "dr_jones@example.com",
                             Password = "doctor123",
                             Role = 1,
-                            UpdatedAt = new DateTime(2024, 11, 15, 16, 51, 23, 520, DateTimeKind.Utc).AddTicks(2877),
+                            UpdatedAt = new DateTime(2024, 11, 15, 16, 8, 31, 45, DateTimeKind.Utc).AddTicks(6324),
                             Username = "dr_jones"
                         });
-                });
-
-            modelBuilder.Entity("ClinicAppointmentsApi.Models.Appointment", b =>
-                {
-                    b.HasOne("ClinicAppointmentsApi.Models.Doctor", "Doctor")
-                        .WithMany()
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Doctor");
                 });
 
             modelBuilder.Entity("ClinicAppointmentsApi.Models.Doctor", b =>
