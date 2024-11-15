@@ -35,5 +35,8 @@ namespace ClinicAppointmentsApi.Interfaces
 
         // Updates the doctor's availability once an appointment is scheduled
         Task UpdateDoctorAvailabilityAsync(int doctorId, DateTime appointmentDate);
+
+        // Method to delete an appointment
+        Task<(bool IsSuccess, string Message)> DeleteAppointmentAsync(int id);
     }
 }

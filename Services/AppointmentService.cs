@@ -173,5 +173,21 @@ namespace ClinicAppointmentsApi.Services
             return await query.ToListAsync();
         }
 
+        // Asynchronously deletes a appointment by its ID.
+        public async Task<(bool IsSuccess, string Message)> DeleteAppointmentAsync(int id)
+        {
+            var appointment = await _context.Appointments.FindAsync(id); // Find the appointment by ID.
+            if (appointment == null)
+            {
+                return (false, "Appointment not found."); // Return failure if Appointment is not found.
+            }
+
+            // Remove the Appointment from the context and save changes to the database.
+            _context.Appointments.Remove(appointment);
+            await _context.SaveChangesAsync();
+
+            return (true, "Appointment deleted successfully."); // Return success result.
+        }
+
     }
 }
