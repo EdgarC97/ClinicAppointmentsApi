@@ -109,5 +109,24 @@ namespace ClinicAppointmentsApi.Controllers.v1.AppointmentControllers
             // Return the list of appointments with a 200 OK response
             return Ok(appointments);
         }
+
+        /// <summary>
+        /// Cancels an existing appointment by changing its status to 'Canceled'.
+        /// </summary>
+        /// <param name="appointmentId">The ID of the appointment to cancel.</param>
+        /// <returns>An IActionResult with the result of the cancellation.</returns>
+        [HttpPost("cancel/{appointmentId}")]
+        public async Task<IActionResult> CancelAppointment(int appointmentId)
+        {
+            // Call the service method to cancel the appointment
+            var result = await _appointmentService.CancelAppointmentAsync(appointmentId);
+
+            if (result == "Appointment not found.")
+            {
+                return NotFound(result);  // If the appointment is not found, return 404
+            }
+
+            return Ok(result);  // Return success message if the cancellation was successful
+        }
     }
 }

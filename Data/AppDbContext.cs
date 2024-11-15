@@ -23,7 +23,7 @@ namespace ClinicAppointmentsApi.Data
 
         public DbSet<Appointment> Appointments { get; set; }
 
-        public DbSet<Availability> Avaliabilities { get; set; }
+        public DbSet<Availability> Availabilities { get; set; }
 
         // Method called when the model for a derived context is being created.
         protected override void OnModelCreating(ModelBuilder modelBuilder)

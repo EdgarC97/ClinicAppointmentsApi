@@ -101,5 +101,26 @@ namespace ClinicAppointmentsApi.Services
 
             return appointments; // Return the list of appointment history
         }
+
+         // Method to cancel an appointment
+        public async Task<string> CancelAppointmentAsync(int appointmentId)
+        {
+            // Retrieve the appointment by ID
+            var appointment = await _context.Appointments.FindAsync(appointmentId);
+
+            if (appointment == null)
+            {
+                return "Appointment not found."; // Return a message if the appointment is not found
+            }
+
+            // Change the status of the appointment to 'Canceled'
+            appointment.Status = AppointmentStatus.Canceled;
+            appointment.UpdatedAt = DateTime.UtcNow;  // Update the timestamp
+
+            // Save the changes to the database
+            await _context.SaveChangesAsync();
+
+            return "Appointment successfully canceled.";  // Return success message
+        }
     }
 }

@@ -56,6 +56,7 @@ builder.Services.AddAuthentication(config =>
 // Register application services
 builder.Services.AddScoped<IAuthService, AuthService>(); // User service registration
 builder.Services.AddScoped<IAppointmentService, AppointmentService>(); // Appointment service 
+builder.Services.AddScoped<IDoctorAvailabilityService, DoctorAvailabilityService>(); // Doctor Availability service 
 
 
 // Add services to the container

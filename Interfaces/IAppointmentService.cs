@@ -27,5 +27,7 @@ namespace ClinicAppointmentsApi.Interfaces
 
         // Method to get the appointment history for a specific patient.
         Task<IEnumerable<AppointmentHistoryDTO>> GetAppointmentHistoryByPatientAsync(int patientId);
+        // Method to cancel an appointment
+        Task<string> CancelAppointmentAsync(int appointmentId);
     }
 }
