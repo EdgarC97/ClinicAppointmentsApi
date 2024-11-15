@@ -22,6 +22,11 @@ namespace ClinicAppointmentsApi.Models
         // Navigation property to the associated User object (Doctor is a User)
         public User User { get; set; }
 
+        // Doctor's name
+        [Required]
+        [StringLength(200)]
+        public string Name { get; set; }
+
         // Doctor's specialty (e.g., Cardiologist, Dentist, etc.)
         [Required]
         [StringLength(150)]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ClinicAppointmentsApi.Models;
+using ClinicAppointmentsApi.Seeders;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClinicAppointmentsApi.Data
@@ -28,11 +29,11 @@ namespace ClinicAppointmentsApi.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Seed the database with initial data for RoomTypes, Rooms, Guests, Employees, and Bookings.
-            // RoomTypeSeeder.Seed(modelBuilder);
-            // RoomSeeder.Seed(modelBuilder);
-            // GuestSeeder.Seed(modelBuilder);
-            // EmployeeSeeder.Seed(modelBuilder);
-            // BookingSeeder.Seed(modelBuilder);
+            UserSeeder.Seed(modelBuilder);
+            DoctorSeeder.Seed(modelBuilder);
+            PatientSeeder.Seed(modelBuilder);
+            AppointmentSeeder.Seed(modelBuilder);
+            AvailabilitySeeder.Seed(modelBuilder);
 
             // Call the base class implementation.
             base.OnModelCreating(modelBuilder);
