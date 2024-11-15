@@ -51,5 +51,8 @@ namespace ClinicAppointmentsApi.Models
 
         // Navigation property to access the associated Doctor object
         public Doctor Doctor { get; set; }  // This is the navigation property
+
+        [StringLength(500)]
+        public string Notes { get; set; }
     }
 }
